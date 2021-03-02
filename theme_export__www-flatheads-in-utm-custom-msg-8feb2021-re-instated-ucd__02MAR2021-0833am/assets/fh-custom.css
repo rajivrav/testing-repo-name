@@ -1,0 +1,116 @@
+#fhcFaq .fhc-section-heading {
+  cursor: pointer;
+}
+
+#fhcFaq .fhc-section {
+  margin-bottom: 60px;
+}
+
+#fhcFaq .fhc-question {
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#fhcFaq .fhc-answer-container ul {
+  margin: 0px;
+  padding-left: 20px;
+}
+
+#fhcFaq .fhc-item {
+  border-bottom: 1px solid #000000;
+  margin: 10px 0px;
+  padding: 10px 0px;
+}
+
+
+
+/* start from bootstrap custom */
+/*!
+ * Generated using the Bootstrap Customizer (https://getbootstrap.com/docs/3.4/customize/)
+ */
+.collapse {
+  display: none;
+}
+
+.collapse.in {
+  display: block;
+}
+
+/* end from bootstrap custom */
+
+
+/* start reviews on homepage */
+
+
+#reviewsItems h2 {
+  text-align: left;
+}
+
+#reviewsItems .items {
+  text-align: left;
+}
+
+#reviewsItems .item {
+  text-align: left;
+  display:inline-block;
+  vertical-align: top;
+  padding: 5px;
+  margin-top: 30px;
+}
+
+#reviewsItems .item h3 {
+  margin: 10px 0px;
+  text-align: left;
+}
+
+#reviewsItems .item h4 {
+  margin: 10px 0px;
+}
+
+#reviewsItems .item img {
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+#reviewsItems .item button.btn {
+  margin-top: 50%;
+}
+
+@media only screen and (min-width: 769px) {
+  #reviewsItems .item {
+    width: 24%;
+    padding: 15px;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  #reviewsItems .item {
+    width: 49%;
+  }
+
+  #reviewsItems .item h3 {
+    font-size: 14px;
+  }
+}
+
+
+.grid-product__tag {
+  background-color: #f3003d !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+  font-size: 12px !important;
+}
+
+.grid-product__tag.new-product {
+  background-color: #ffffff !important;
+  color: #bd1442 !important;
+  font-weight: bold !important;
+  font-size: 12px !important;
+}
+
+
+/* end reviews on homepage*/

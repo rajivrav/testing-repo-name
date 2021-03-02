@@ -1,0 +1,51 @@
+<!-- <a id="viewSizeChart" style="cursor: pointer; color:blue; border-bottom: 1px solid; text-align: left;" onclick="viewSizeChart(this)">View Size Chart</a> -->
+
+<div id="sizeChartContainer">
+
+{% if current_variant.sku contains 'KAPOWOW' or current_variant.sku contains 'KAPOGYB' %}
+
+<img style="margin-top: 20px;" alt="Flatheads Kapow 2.0 shoes size chart" src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/size_chart_kapow_2_480x480.jpg?v=1599222357">
+
+{% elsif current_variant.sku contains 'ELL'%}
+  
+  <img style="margin-top: 20px;" alt="Flatheads Ellipsis shoes size chart" src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/ellipsis-size-chart-v2-optimised.jpg?v=1609240898">
+  
+{% elsif current_variant.sku contains 'AUR'%}
+  
+  <img style="margin-top: 20px;" alt="Flatheads Aurea shoes size chart" src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/aurea-size-chart-v2-optimised.jpg?v=1609240898">
+  
+{% elsif current_variant.sku contains 'FHMT'%}
+  
+  <div style="margin-top:20px; text-align: left;">
+    <p>Soft to touch, lightweight bamboo t-shirt that feels cool on the skin, even in Indian summers.</p>
+    <p><strong>Why Bamboo?</strong><br></p>
+    <ul>
+    <li>It’s like second skin: So light, you’ll forget it’s there.</li>
+    <li>Stay fresh: Moisture wicking and antimicrobial.</li>
+    <li>Beat the heat: Made with naturally cool bamboo yarn.</li>
+    </ul>
+    <p><strong>Materials</strong></p>
+    <ul>
+    <li><span style="font-weight: 400;" data-mce-style="font-weight: 400;">46% bamboo, 49% organic cotton, 5% Lycra</span></li>
+    </ul>
+  </div>
+
+{% endif %}
+  
+  
+</div>
+
+<script type='text/javascript'>
+//   var viewSizeChart = document.getElementById('viewSizeChart');
+//   var sizeChart = document.getElementById('sizeChartContainer');
+  
+  
+//   var viewSizeChart = function(elem) {
+//   	elem.style.display = "none";
+//   	document.getElementById('sizeChartContainer').style.display = "block";
+//   }
+  
+//   viewSizeChart.addEventListener("click", function(){
+    
+//   });
+</script>

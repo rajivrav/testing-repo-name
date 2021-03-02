@@ -1,0 +1,103 @@
+<style>
+  .features-carousel-container {
+/*     max-width: 500px; */
+  }
+  
+  .features-carousel h2 {
+    text-align: center;
+  }
+
+  .features-carousel .items {
+    margin: 0 auto;
+  }
+  
+  .features-carousel .item {
+    padding: 5px;
+  }
+  
+  .features-carousel-container .header {
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .features-carousel .item h3 {
+    font-size: 16px;
+    margin: 10px 0px;
+  }
+  
+  .features-carousel .slick-arrow {
+    font-size: 14px;
+    background: transparent;
+    color: #000000;
+  }
+  
+  .features-carousel .slick-arrow .icon {
+  	width: 16px;
+    height: 20px;
+  }
+  
+  .features-carousel .slick-next {
+  	right: 0px;
+  }
+  
+  .features-carousel .slick-prev {
+    left: 0px;
+  }
+
+  @media only screen and (min-width: 769px) {
+
+  }
+
+  @media only screen and (max-width: 768px) {
+
+  }
+
+</style>
+
+{% if current_variant.sku contains 'ELL' %}
+
+<div class="features-carousel-container">
+  <p class="header">Designed for all-day comfort</p>
+  <div class="items features-carousel">
+      <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/flatheads-ellipsis-shoes-quick-slip-on.jpg?v=1608303469">
+      </div>
+    
+	  <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/flatheads-ellipsis-shoes-super-lightweight.jpg?v=1608303468">
+      </div>
+    
+      <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/flatheads-ellipsis-shoes-breathable.jpg?v=1608303469">
+      </div>
+    
+      <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/flatheads-ellipsis-shoes-cushioned-insole.jpg?v=1608303468">
+      </div>
+  </div>
+</div>
+
+{% elsif current_variant.sku contains 'AUR' %}
+
+<div class="features-carousel-container">
+  <p class="header">Designed for all-day comfort</p>
+  <div class="items features-carousel">
+      <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/flatheads-aurea-naturally-cool-bamboo-shoes.jpg?v=1608303469">
+      </div>
+    
+	  <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/flatheads-aurea-ultra-lightweight-bamboo-shoes.jpg?v=1608303469">
+      </div>
+    
+      <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/flatheads-aurea-supreme-comfort-bamboo-shoes.jpg?v=1608303469">
+      </div>
+    
+      <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0258/2485/4100/files/flatheads-aurea-go-sockless-bamboo-shoes.jpg?v=1608303469">
+      </div>
+  </div>
+</div>
+
+{% endif %}

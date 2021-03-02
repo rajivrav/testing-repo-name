@@ -1,0 +1,156 @@
+{% capture form_id %}AddToCartForm-{{ section_id }}{% endcapture %}
+{% form 'product', product, id: form_id, class: 'product-single__form' %}
+  {%- assign is_default_variant = false -%}
+  {% if product.variants[0].title == 'Default Title' or product.variants[0].title == 'Default' %}
+    {%- assign is_default_variant = true -%}
+  {% endif %}
+  {% unless product.options.size == 1 and is_default_variant %}
+    {% for option in product.options_with_values %}
+      {% if settings.variant_type == 'button' %}
+        {% include 'variant-button', section_id: section_id, option_drop: option %}
+      {% else %}
+        {% include 'variant-dropdown', section_id: section_id %}
+      {% endif %}
+    {% endfor %}
+  {% endunless %}
+
+ <!-- flatheads custom code inserted below -->
+	<div id="oosNotifierContainer" style="margin-bottom:20px;">
+	</div>
+
+    <span id="variantMsgWrapper" {% unless current_variant.sku contains 'FHMSH021901KAPO' %} class="hide" {% endunless %}>
+        <div style="padding-bottom:10px; font-weight: 600;"><p id="customVariantMsg" style="display:inline-block; margin:5px; vertical-align:middle;">Buy one size bigger as the Kapow has a snug fit.</p></div>
+    </span>
+ <!-- END flatheads custom code inserted below -->
+
+  <select name="id" id="ProductSelect-{{ section_id }}" class="product-single__variants no-js">
+    {% for variant in product.variants %}
+      {% if variant.available %}
+        <option {% if variant == product.selected_or_first_available_variant %}
+          selected="selected" {% endif %}
+          value="{{ variant.id }}">
+          {{ variant.title }} - <span class="money" data-product-id="{{ product.id }}">{{ variant.price | money_with_currency }}</span>
+        </option>
+      {% else %}
+        <option disabled="disabled">
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+  {% if settings.quantity_enable %}
+    <div class="product__quantity product__quantity--{{ settings.variant_type }}">
+      <label for="Quantity-{{ section_id }}">{{ 'products.product.quantity' | t }}</label>
+      {% include 'quantity-input', id: section_id, qty: 1, min: 1 %}
+    </div>
+  {% endif %}
+
+  {%- assign inventory_visible = false -%}
+  {%- if current_variant.inventory_management == 'shopify' -%}
+    {%- if current_variant.inventory_quantity <= settings.inventory_threshold and current_variant.inventory_quantity >= 0 -%}
+      {%- assign inventory_visible = true -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- if current_variant.inventory_quantity == 0 -%}
+    {%- assign inventory_visible = false -%}
+  {%- endif -%}
+
+  <div
+    id="ProductInventory-{{ section_id }}"
+    class="product__inventory {% unless inventory_visible %}hide{% endunless %}"
+    >
+    {% if current_variant.available %}
+      {{ 'products.product.stock_label' | t: count: current_variant.inventory_quantity }}
+    {% endif %}
+  </div>
+
+  {%- if settings.inventory_transfers_enable -%}
+    <div
+      id="ProductIncomingInventory-{{ section_id }}"
+      class="product__inventory{% if inventory_visible %} hide{% endif %}">
+      {%- if current_variant.incoming and inventory_visible == false -%}
+        {%- if current_variant.next_incoming_date -%}
+          {% assign date = current_variant.next_incoming_date | date: format: 'date' %}
+          {%- if current_variant.available -%}
+            {{ 'products.product.will_not_ship_until' | t: date: date }}
+          {%- else -%}
+            {{ 'products.product.will_be_in_stock_after' | t: date: date }}
+          {%- endif -%}
+        {%- else -%}
+          {{ 'products.product.waiting_for_stock' | t }}
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- assign enable_dynamic_buttons = false -%}
+  {% if settings.enable_payment_button and template != 'product.preorder' %}
+    {%- assign enable_dynamic_buttons = true -%}
+  {% endif %}
+
+  {% if enable_dynamic_buttons %}
+    <div class="payment-buttons">
+  {% endif %}
+      
+    <!-- flatheads custom code inserted below -->
+<!--     <span id="variantMsgWrapper" {% unless current_variant.sku contains 'KAPOGYB' or current_variant.sku contains 'KAPOWOW' %} class="hide" {% endunless %}>
+        <div style="text-align: center; padding:10px 5px;"><p id="customVariantMsg" style="display:inline-block; margin:5px; vertical-align:middle;">FREE surprise Flatheads merchandise included with every Kapow 2.0.</p></div>
+    </span> -->
+    <!-- END flatheads custom code inserted below -->
+
+    <button
+      {% if product.empty? %}type="button"{% else %}type="submit"{% endif %}
+      name="add"
+      id="AddToCart-{{ section_id }}"
+      class="btn btn--full add-to-cart{% if enable_dynamic_buttons %} btn--secondary{% endif %}"
+      {% unless current_variant.available %} disabled="disabled"{% endunless %}>
+      <span id="AddToCartText-{{ section_id }}">
+        {% if current_variant.sku contains 'TRS' %}
+        	PRE-ORDER NOW
+        {% elsif current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
+      </span>
+    </button>
+
+    {% if enable_dynamic_buttons %}
+      {{ form | payment_button }}
+    {% endif %}
+
+  {% if enable_dynamic_buttons %}
+    </div>
+  {% endif %}
+
+  <div id="VariantsJson-{{ section_id }}" class="hide" aria-hidden="true">
+    {{ product.variants | json }}
+  </div>
+  {% if product.options.size > 1 %}
+    <div id="CurrentVariantJson-{{ section_id }}" class="hide" aria-hidden="true">
+      {{ current_variant | json }}
+    </div>
+  {% endif %}
+
+{% unless current_variant.sku contains '8906027115845' or current_variant.sku contains 'TRS' %}
+<div style="margin-top: 15px; text-align: left; font-weight: 600;">
+    <p style="margin: 5px 0px;">✓&nbsp;&nbsp;FREE Shipping across India.</p>
+    <p style="margin: 5px 0px;">✓&nbsp;&nbsp;Dispatches within 24 hours.</p>
+    <p style="margin: 5px 0px;">✓&nbsp;&nbsp;Delivers within 2-5 days across India.</p>
+    <p style="margin: 5px 0px;">✓&nbsp;&nbsp;FREE 7-day returns/exchanges</p>
+</div>
+{% endunless %}
+	
+	{% unless current_variant.sku contains 'FHMT' or current_variant.sku contains '8906027115845' or current_variant.sku contains 'TRS' %}
+      <span>
+          {% render 'cod-checker' %}
+      </span>
+	{% endunless %}
+
+	{% render 'size-chart', product: product, current_variant: current_variant %}
+
+
+{% endform %}
+
+
